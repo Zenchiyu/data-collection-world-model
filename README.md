@@ -9,7 +9,7 @@ At the moment, the random trajectories follow a **fixed hand-crafted policy**, l
 </p>
 
 ## Credits and modifications
-The code is originally from a private git branch leading to the [DIAMOND](https://github.com/eloialonso/diamond) project, made by [Eloi Alonso](https://eloialonso.github.io)\* and [Vincent Micheli](https://vmicheli.github.io)\* and was modified by [Stéphane Nguyen](https://zenchiyu.github.io).
+The code is originally from a private git branch leading to the [DIAMOND](https://github.com/eloialonso/diamond) project, made by [Eloi Alonso](https://eloialonso.github.io) and [Vincent Micheli](https://vmicheli.github.io) and was modified by [Stéphane Nguyen](https://zenchiyu.github.io).
 
 Modifications include
 - Removed RL agent and world model. PyTorch models are no longer used in the data collection.
