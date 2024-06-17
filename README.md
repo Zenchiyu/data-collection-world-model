@@ -12,16 +12,16 @@ At the moment, the random trajectories follow a **fixed hand-crafted policy**, l
 The code is originally from a private git branch leading to the [DIAMOND](https://github.com/eloialonso/diamond) project, made by [Eloi Alonso](https://eloialonso.github.io) and [Vincent Micheli](https://vmicheli.github.io) and was modified by [Stéphane Nguyen](https://zenchiyu.github.io).
 
 Modifications include
-- Removed RL agent and world model. PyTorch models are no longer used in the data collection.
+- We removed the RL agent and world model. PyTorch models are no longer used in the data collection.
 - Renamed:
   - `trainer` to `collector`, as there are no PyTorch models to train.
-  - `play` to `explore` and game to `visualizer`, as we can no longer play inside the world model.
-- We can now retrieve the Crafter terrain. For a vectorized gymnasium environment `env`, we need to use `env.unwrapped.call("get_map", episode=ep)`.
-- We can now to visualize some agent trajectories in `trajectories.py` (WIP).
+  - `play` to `explore` and `game` to `visualizer`, as we can no longer play inside the world model.
+- We can now retrieve the Crafter terrain (code inspired by [`run_terrain.py` from Crafter](https://github.com/danijar/crafter/blob/e04542a2159f1aad3d4c5ad52e8185717380ee3a/crafter/run_terrain.py)). For a vectorized gymnasium environment `env`, we need to use `env.unwrapped.call("get_map", episode=ep)`.
+- We can now visualize some agent trajectories in `trajectories.py` (WIP).
 
 ## BibTeX
 
-If you find this code useful, please use the following reference, as it is a work resulting from the [DIAMOND](https://github.com/eloialonso/iris) project:
+If you find this code useful, please use the following reference, as it is a work resulting from the [IRIS](https://github.com/eloialonso/iris) project:
 
 ```
 @article{iris2022,
@@ -42,10 +42,13 @@ If you find this code useful, please use the following reference, as it is a wor
 
 - For the Crafter game:
 ```bash
-python src/main.py common.device=cuda:0
+python src/main.py common.device=cuda:0 collection.num_envs=<num_envs> collection.num_steps_total=<num_steps_total>
 ```
+where `num_envs` is the number of environment copies (trajectories within the same map), and `num_steps_total` is the number of frames we want to collect.
 
-By default, the logs are synced to [weights & biases](https://wandb.ai), set `wandb.mode=disabled` to turn it off.
+**Import remark:** At each episode, a new map is generated, since [VectorEnv](https://gymnasium.farama.org/api/vector/#gymnasium-vector-vectorenv) autoresets sub-environments, and because of the way the [Crafter](https://github.com/danijar/crafter/blob/e04542a2159f1aad3d4c5ad52e8185717380ee3a/crafter/env.py#L74) game resets.
+
+**WIP:** Logs are not yet synced with [weights & biases](https://wandb.ai). We set `wandb.mode=disabled` by default.
 
 ## Configuration
 
@@ -53,7 +56,7 @@ By default, the logs are synced to [weights & biases](https://wandb.ai), set `wa
 - The simplest way to customize the configuration is to edit these files directly.
 - Please refer to [Hydra](https://github.com/facebookresearch/hydra) for more details regarding configuration management.
 
-## Run folder
+## Run folder and visualizer
 
 Each new run is located at `outputs/YYYY-MM-DD/hh-mm-ss/`. This folder is structured as:
 
@@ -77,27 +80,28 @@ outputs/YYYY-MM-DD/hh-mm-ss/
 │   └── visualizer
 ```
 - `dataset`: contains the collected dataset in the format described in the `src/data` directory.
-- **From the run folder**:
-    - Running `python ./src/explore.py` to visualize the episodes contained in `dataset/recent` (`src/explore.py` was previously called `src/play.py`).
-      - Adding `--no-header` to the command will ignore the header.
-      - Adding `--fps <number>` to the command will change the PyGame frame-rate.
-      - In the visualizer, you can perform the following actions:
-        ```
-        Actions (macro):
 
-        ESC/q : quit
-        ⏎ : reset env
-        m : next dataset
-        ↑ : next episode
-        ↓ : previous episode
+### Visualizer:
+**From the run folder**, you can run `python ./src/explore.py` to **visualize** the episodes contained in `dataset/recent` (`src/explore.py` was previously called `src/play.py`).
+  - Adding `--no-header` to the command will ignore the header.
+  - Adding `--fps <number>` to the command will change the PyGame frame rate.
+  - In the visualizer, you can perform the following actions:
+    ```
+    Actions (macro):
 
-        Actions (micro):
+    ESC/q : quit
+    ⏎ : reset env
+    m : next dataset
+    ↑ : next episode
+    ↓ : previous episode
 
-        → : next frame
-        ← : previous frame
-        page up: skip 10 frames
-        page down: go back 10 frames
-        ```
+    Actions (micro):
+
+    → : next frame
+    ← : previous frame
+    page up: skip 10 frames
+    page down: go back 10 frames
+      ```
 
 ## Credits
 
