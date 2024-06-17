@@ -1,8 +1,10 @@
 # Static Data Collection for World Models
 
-This repository contains code to collect random trajectories in the Crafter game and visualize the resulting dataset.
-At the moment, the random trajectories follow a fixed hand-crafted policy, leading to a static dataset.
+This repository contains code to collect random trajectories in the [Crafter](https://github.com/danijar/crafter) game and visualize the resulting dataset.
 
+At the moment, the random trajectories follow a **fixed hand-crafted policy**, leading to a **static dataset**.
+
+## Credits and modifications
 The code is originally from a private git branch leading to the [DIAMOND](https://github.com/eloialonso/diamond) project, made by [Eloi Alonso](https://eloialonso.github.io)\* and [Vincent Micheli](https://vmicheli.github.io)\* and was modified by [Stéphane Nguyen](https://zenchiyu.github.io).
 
 Modifications include
@@ -10,8 +12,8 @@ Modifications include
 - Renamed:
   - `trainer` to `collector`, as there are no PyTorch models to train.
   - `play` to `explore` and game to `visualizer`, as we can no longer play inside the world model.
-- Can now retrieve the Crafter terrain. For a vectorized gymnasium environment `env`, we need to use `env.unwrapped.call("get_map", episode=ep)`.
-- Added  `trajectories.py` to visualize some agent trajectories (WIP).
+- We can now retrieve the Crafter terrain. For a vectorized gymnasium environment `env`, we need to use `env.unwrapped.call("get_map", episode=ep)`.
+- We can now to visualize some agent trajectories in `trajectories.py` (WIP).
 
 ## BibTeX
 
@@ -97,7 +99,5 @@ outputs/YYYY-MM-DD/hh-mm-ss/
 
 - [https://github.com/eloialonso/iris](https://github.com/eloialonso/iris)
 - [https://github.com/eloialonso/diamond](https://github.com/eloialonso/diamond)
+- [https://github.com/danijar/crafter](https://github.com/danijar/crafter)
 - [https://github.com/pytorch/pytorch](https://github.com/pytorch/pytorch)
-- [https://github.com/CompVis/taming-transformers](https://github.com/CompVis/taming-transformers)
-- [https://github.com/karpathy/minGPT](https://github.com/karpathy/minGPT)
-- [https://github.com/google-research/rliable](https://github.com/google-research/rliable)
