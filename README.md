@@ -34,7 +34,7 @@ If you find this code useful, please use the following reference, as it is a wor
 
 ## Setup
 
-- Install [PyTorch](https://pytorch.org/get-started/locally/) (torch and torchvision). Code developed with torch==1.11.0 and torchvision==0.12.0.
+- Install [PyTorch](https://pytorch.org/get-started/locally/) (torch and torchvision). Code developed with torch==2.0.1.
 - Install [other dependencies](requirements.txt): `pip install -r requirements.txt`
 - Warning: Atari ROMs will be downloaded with the dependencies, which means that you acknowledge that you have the license to use them.
 
