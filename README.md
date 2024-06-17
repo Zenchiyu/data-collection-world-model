@@ -4,6 +4,10 @@ This repository contains code to collect random trajectories in the [Crafter](ht
 
 At the moment, the random trajectories follow a **fixed hand-crafted policy**, leading to a **static dataset**.
 
+<p align="center">
+  <img src="./media/visualizer.png" width="250"/>
+</p>
+
 ## Credits and modifications
 The code is originally from a private git branch leading to the [DIAMOND](https://github.com/eloialonso/diamond) project, made by [Eloi Alonso](https://eloialonso.github.io)\* and [Vincent Micheli](https://vmicheli.github.io)\* and was modified by [Stéphane Nguyen](https://zenchiyu.github.io).
 
