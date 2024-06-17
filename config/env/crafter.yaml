@@ -1,0 +1,7 @@
+
+train:
+  size: 64
+
+test: ${.train}
+
+keymap: crafter

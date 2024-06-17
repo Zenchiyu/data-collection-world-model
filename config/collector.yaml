@@ -1,0 +1,27 @@
+defaults:
+  - _self_
+  - env: crafter
+
+hydra:
+  job:
+    chdir: True
+
+wandb:
+  mode: disabled
+  project: static-world-models
+  entity: null # mlg
+  name: crafter-1M-training
+  group: datasets
+  tags: null
+  notes: Training dataset
+
+common:
+  device: cuda:0
+  seed: null # TODO
+
+collection:
+  num_envs: 8  # For static data: nb of envs in parallel
+  num_steps_total: 10000 # For static data: 100k for test set. Train has 1 000k
+
+cache_in_ram: False
+num_workers_data_loaders: 0
