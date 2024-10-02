@@ -6,3 +6,5 @@ pygame
 torch==2.0.1
 tqdm
 wandb
+numpy<2
+crafter

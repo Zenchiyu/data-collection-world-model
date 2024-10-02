@@ -96,7 +96,7 @@ class TorchEnv(gymnasium.Wrapper):
     def _to_tensor(self, x: torch.Tensor) -> torch.Tensor:
         if x.ndim == 4:
             return (
-                torch.tensor(x, device=self.device)
+                torch.tensor(x, device=self.device, dtype=torch.float)
                 .div(255)
                 .mul(2)
                 .sub(1)
